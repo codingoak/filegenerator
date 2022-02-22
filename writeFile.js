@@ -1,18 +1,18 @@
-const fs = require('fs'); // import fs from 'fs'
+const fs = require('fs');
+const templates = require('./templates');
 
-module.exports = function writeFile(name, fileType) {
+function writeFile(name, fileType) {
   try {
     const fileName =
       fileType === 'component' ? `./${name}.js` : `./${name}.${fileType}.js`;
 
+    const fileString = templates[fileType](name); // template['component']
+
     // write file with given name and pattern
-    fs.writeFileSync(
-      fileName,
-      `function ${name}() {
-  
-}`
-    );
+    fs.writeFileSync(fileName, fileString);
   } catch (error) {
     console.error(error.message);
   }
-};
+}
+
+module.exports = writeFile;
