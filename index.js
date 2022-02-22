@@ -6,7 +6,6 @@ inquirer
     {
       name: 'functionName',
       message: 'What is the name of your component?',
-      // with function declaration
       validate: answer => {
         if (answer.length < 1) {
           return 'You must enter at least one character!';
@@ -19,7 +18,6 @@ inquirer
       name: 'fileTypes',
       message: 'Which file types should be created?',
       choices: ['component', 'spec', 'stories'],
-      // with an arrow function
       validate: answer => {
         if (answer.length < 1) {
           return 'You must select at least one type!';

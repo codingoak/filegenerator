@@ -8,7 +8,6 @@ function writeFile(name, fileType) {
 
     const fileString = templates[fileType](name); // template['component']
 
-    // write file with given name and pattern
     fs.writeFileSync(fileName, fileString);
   } catch (error) {
     console.error(error.message);
