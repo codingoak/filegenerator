@@ -6,16 +6,30 @@ inquirer
     {
       name: 'functionName',
       message: 'What is the name of your component?',
-      // default: '',
+      // with function declaration
+      validate: answer => {
+        if (answer.length < 1) {
+          return 'You must enter at least one character!';
+        }
+        return true;
+      },
     },
     {
       type: 'checkbox',
       name: 'fileTypes',
       message: 'Which file types should be created?',
       choices: ['component', 'spec', 'stories'],
-      // default: '',
+      // with an arrow function
+      validate: answer => {
+        if (answer.length < 1) {
+          return 'You must select at least one type!';
+        }
+        return true;
+      },
     },
   ])
   .then(answers => {
-    writeFile(answers.functionName);
+    answers.fileTypes.forEach(type => {
+      writeFile(answers.functionName, type);
+    });
   });
